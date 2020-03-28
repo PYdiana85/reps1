@@ -1,0 +1,23 @@
+$link-border-p-color: #f5bc83;
+
+
+.top{
+  border:  2px dashed $link-border-p-color;
+    
+    a:hover{
+        background-color: $link-border-p-color;}
+}
+
+p:first-of-type{background-color: $link-border-p-color;}
+
+p{border: 1px solid $link-border-p-color;}
+#page1 {
+padding-top: 80px;padding-right: 5px;padding-left: 5px;}
+
+#page2,#page3  {
+  @extend #page1;}
+
+
+#page4{@extend #page1;padding-bottom: 40px;}
+
+h2{border: 2px dashed $link-border-p-color;padding: 10px;}
