@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block body %}
+
+ {% if session["user_id"]: %}
+ <p style="text-align: right"><a href="{{url_for('logout')}}"class="btn"style="border: 1px solid grey;border-radius: 5px">LOGOUT</a> </p>        {% endif %}
+
+{% if book: %}
+<h3>Title</h3>
+{% endif %}
+
+
+  <div class="list-group">
+{% for b in book %}
+<a class="list-group-item lead"href="{{url_for('addReview',isbn=b.isbn)}}">{{ b.title }}</a>
+    
+{% else %}
+<h3 class="text-danger bg_danger">No Books were found Click &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="{{url_for('booksSite')}}"class="btn btn-warning btn-lg">BACK</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+    to try another search </h3>
+		
+		{% endfor %} 
+</div>x
+
+{%  endblock %}
+
+
+
+
+

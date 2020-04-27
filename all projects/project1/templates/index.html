@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{%block title %}Books Site{% endblock %}
+
+{% block body %}
+<hr>
+<div class="row">
+    <div class="col col-md-6">
+      <h2>Not a member ?
+</h2><p class="lead">REGISTER to View our latest books</p>
+<hr>
+<form action="{{url_for('registerUsers')}}"method="post">
+    <label>Name:</label><input type="text"class="form-control"name="name" required>
+    <label>Password:</label><input type="password"class="form-control"name="pass" required>
+        <label>Date OF Birth:</label><input type="date"class="form-control"name="dob"required>
+        <br>
+<input type="submit" class="btn btn-success btn-lg"value="Register">
+</form>  
+    </div>
+
+    <div class="col col-md-6">
+      <h2>already a member ?</h2>
+      <p class="lead">LOGIN and View our latest books</p><hr>
+<form action="{{url_for('loginCheck')}}"method="post">
+   <label>Name:</label><input type="text"class="form-control" name="name" required>
+   <label>Password:</label><input type="password"class="form-control" name="pass" required><br>
+    <input type="submit"value="LOGIN"class="btn btn-lg btn-success">
+</form>  
+        
+        
+    </div>
+
+</div>
+        <h3 class="bg-success text-success" >{{msg}}</h3>
+
+        <h3 class="bg-danger text-danger" >{{msg_error}}</h3>
+
+{% endblock %}

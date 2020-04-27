@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}BooksSite{% endblock %}
+{%block body %}
+
+{% if session["user_id"]: %}
+<div class="row">
+   
+    <div class="col col-md-6">
+            
+<p class="lead" style="text-align: left">Hello {{ session["name"] }} You can strart UR search for books now:</p>
+ 
+    </div>
+     <div class="col col-md-6">
+         <p style="text-align: right"><a href="{{url_for('logout')}}"class="btn"style="border: 1px solid grey;border-radius: 5px">LOGOUT</a> </p>
+        
+    </div>
+    
+</div>   
+ {% endif %}
+  <h4 style="color:red">{{msg}}</h4>
+<h3 class="bg-danger text-danger" >{{msg_error}}</h3>
+
+   <form action="{{url_for('displayURBookS')}}"method="post">
+    
+    <input type="text"placeholder="Type to search using Boook ISBN"name="isbn" class="form-control">
+    <br>OR
+    <input type="text"placeholder="Type to search using the name of the book"name="bookname"class="form-control">
+    <br>OR
+    <input type="text"placeholder="Type to search using the Author's name"name="author_name"class="form-control">
+    <br>
+    <input type="submit"value="SEARCH"class="btn btn-lg btn-info">
+    <br>
+</form>
+{% endblock %}

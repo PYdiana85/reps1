@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block title %}The Book Page{% endblock %}
+{%block body %}
+ {% if session["user_id"]: %}
+ <p style="text-align: right"><a href="{{url_for('logout')}}"class="btn"style="border: 1px solid grey;border-radius: 5px">LOGOUT</a> </p>        {% endif %}
+        
+<table class="table table-light table-bordered ">
+   <caption>Book details</caption>
+    <tr><td>ISBN</td><td>{{book.isbn}}</td></tr>
+    <tr><td>Title</td><td>{{book.title}}</td></tr>
+    <tr><td>Author</td><td>{{book.author}}</td></tr>
+    <tr><td>Publication Year</td><td> {{book.year}}</td></tr>
+</table>
+<h3 class="bg-success text-success">{{msg}}</h3>
+
+<hr>
+ 
+    <div class="row">
+        <div class="col col-md-6">
+                    <p class="lead">Rate the book from 1 - 5:</p>
+<hr>
+<form action="{{url_for('saveRating',isbn=book.isbn)}}" method="post">
+    
+<select class="form-control" name="rate"required>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select><br>
+<textarea name="comment" class="form-control" placeholder="Here you can leave a comment"rows="2" ></textarea><br>
+<input type="submit" class="btn btn-primary" value="SUBMIT">
+</form>
+        </div>
+        
+        <div class="col col-md-6">
+            <p class="lead">book ratings and previous reviews:</p><hr>
+ <ol>
+      {% for rev in review %}
+      {% if rev.comment != ""  %}
+      <li>{{rev.comment}}</li>
+      {% endif %}
+      {% endfor %}
+  </ol>
+            
+        </div>
+    </div><hr><h3 style="color: red">{{msg_error}}</h3>
+         <p class="lead">Book Review from Goodreads</p>     
+<p>the average rating   :   <span style="text-decoration: underline"> {{averageRating}}</span> </p>
+        <p> number of ratings the work has received from Goodreads   :   <span style="text-decoration: underline">{{ rating_counts }}</span> </p> 
+         <hr>    
+
+
+
+
+{% endblock %}
